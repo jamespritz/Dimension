@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationExceptionLogEntry.cs" />
+    <Compile Include="facade\ISessionFacade.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="ISession.cs" />
+    <Compile Include="LogEntryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\security\security.csproj">
+      <Project>{27389781-9baf-40ae-bdc8-e179f1d8e8b5}</Project>
+      <Name>security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

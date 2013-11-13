@@ -14,6 +14,7 @@ namespace intrinsic.data {
         : IRepository<TEntity>
         where TEntity : class {
 
+
         protected DbContext context = null;
         protected DbSet<TEntity> dbSet = null;
 
