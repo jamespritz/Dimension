@@ -4,7 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 
 namespace intrinsic.xl8.client {
-    internal class Resource: IResource {
+    
+    
+    public class Resource: IResource {
         
         public int ID { get; set; }
         public Guid UID { get; set; }

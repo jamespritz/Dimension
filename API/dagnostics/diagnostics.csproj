@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ApplicationExceptionLogEntry.cs" />
     <Compile Include="facade\ISessionFacade.cs" />
+    <Compile Include="IAccountSession.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="LogEntryBase.cs" />

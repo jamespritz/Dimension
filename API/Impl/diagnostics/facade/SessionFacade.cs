@@ -5,14 +5,70 @@ using System.Text;
 using System.Threading.Tasks;
 using intrinsic.security;
 using intrinsic.data;
+using Microsoft.Practices.Unity;
+using System.Data.Entity;
 
 namespace intrinsic.diagnostics.facade {
+
     public class SessionFacade: ISessionFacade {
+
+
+        private DbContext dxContext;
+        //[Dependency("dimension")]
+        public DbContext Dimension {
+            get {
+                if (this.dxContext == null) {
+                    this.dxContext = new DxContext();
+                }
+                return this.dxContext;
+            }
+            set {
+                this.dxContext = value;
+            }
+        }
+
+        private IRepository<Session> repo_session;
+        public IRepository<Session> SessionRepo {
+            get {
+                if (this.repo_session == null) {
+                    this.repo_session = new Repository<Session>(this.Dimension); 
+                }
+                return this.repo_session;
+            }
+            set {
+                this.repo_session = value;
+            }
+        }
+
+        private IRepository<AccountSession> repo_acctsession;
+        public IRepository<AccountSession> AccountSessionRepo {
+            get {
+                if (this.repo_acctsession == null) {
+                    this.repo_acctsession = new Repository<AccountSession>(this.Dimension);
+                }
+                return this.repo_acctsession;
+            }
+            set {
+                this.repo_acctsession = value;
+            }
+        }
+
+        private IRepository<Log> repo_log;
+        public IRepository<Log> LogRepo {
+            get {
+                if (this.repo_log == null) {
+                    this.repo_log = new Repository<Log>(this.Dimension);
+                }
+                return this.repo_log;
+            }
+            set {
+                this.repo_log = value;
+            }
+        }
 
         ISession ISessionFacade.Create(string origin) {
 
-            DxContext ctx = new DxContext();
-            IRepository<Session> repo_session = new Repository<Session>(ctx);
+            if (string.IsNullOrEmpty(origin)) throw new ArgumentNullException("origin");
 
             Session newSession = new Session() {
                 createDT = DateTimeOffset.UtcNow
@@ -21,48 +77,58 @@ namespace intrinsic.diagnostics.facade {
                 , UID = Guid.NewGuid()
             };
 
-            repo_session.Insert(newSession);
-            ctx.SaveChanges();
+            SessionRepo.Insert(newSession);
+            Dimension.SaveChanges();
 
             return newSession;
 
         }
 
         void ISessionFacade.LinkAccount(ISession session, IAccount account) {
-            DxContext ctx = new DxContext();
-            IRepository<AccountSession> repo_session = new Repository<AccountSession>(ctx);
+
+            if (session == null) { throw new ArgumentNullException("session"); }
+            if (account == null) { throw new ArgumentNullException("account"); }
+
+   
+
+            AccountSession current = AccountSessionRepo.Get(g => g.sessionID == session.id, null, null).FirstOrDefault();
+            if (current != null) throw new InvalidOperationException("Session is already associated with an account");
 
             AccountSession joined = new AccountSession() {
                 accountID = account.ID
                 , sessionID = session.id
             };
 
-            repo_session.Insert(joined);
-            ctx.SaveChanges();
-            
-
+            this.AccountSessionRepo.Insert(joined);
+            this.Dimension.SaveChanges();
         }
 
         ISession ISessionFacade.SlideExpiration(ISession session, TimeSpan duration) {
+
+            if (session == null) throw new ArgumentNullException("session");
+            
+
+            if (session.expireDT <= DateTimeOffset.UtcNow) throw new InvalidOperationException("Session has already been expired");
+            if (duration <= TimeSpan.FromSeconds(0)) { throw new ArgumentOutOfRangeException("Duration must be greater than 0"); }
 
             DateTimeOffset expires = (session.expireDT ?? DateTimeOffset.UtcNow).Add(duration);
             Session asSession = (Session)session;
             asSession.expireDT = expires;
 
-            DxContext ctx = new DxContext();
-            IRepository<Session> repo_session = new Repository<Session>(ctx);
+            this.SessionRepo.Update(asSession);
 
-            repo_session.Update(asSession);
-
-            ctx.SaveChanges();
+            this.Dimension.SaveChanges();
 
             return asSession;
 
         }
 
         void ISessionFacade.Log(LogEntry entry, ISession session) {
-            DxContext ctx = new DxContext();
-            IRepository<Log> repo_log = new Repository<Log>(ctx);
+
+            if (entry == null) { throw new ArgumentNullException("entry"); }
+            if (session == null) { throw new ArgumentNullException("session"); }
+            if (session.id == 0) { throw new ArgumentException("session must be created first"); }
+            
 
             Log newEntry = new Log() { 
                 createDT = DateTime.UtcNow
@@ -73,16 +139,18 @@ namespace intrinsic.diagnostics.facade {
                 , severity = (int)entry.Level
             };
 
-            repo_log.Insert(newEntry);
+            this.LogRepo.Insert(newEntry);
 
 
-            ctx.SaveChanges();
+            this.Dimension.SaveChanges();
         }
 
         void ISessionFacade.Log(LogEntry[] entries, ISession session) {
+
+            if ((entries == null) || (entries.Count() == 0)) { throw new ArgumentNullException("entry"); }
+            if (session == null) { throw new ArgumentNullException("session"); }
+            if (session.id == 0) { throw new ArgumentException("session must be created first"); }
             
-            DxContext ctx = new DxContext();
-            IRepository<Log> repo_log = new Repository<Log>(ctx);
 
             foreach (LogEntry l in entries) {
                 
@@ -95,10 +163,10 @@ namespace intrinsic.diagnostics.facade {
                     , severity = (int)l.Level
                 };
 
-                repo_log.Insert(newEntry);
+                this.LogRepo.Insert(newEntry);
             }
 
-            ctx.SaveChanges();
+            this.Dimension.SaveChanges();
             
 
         }

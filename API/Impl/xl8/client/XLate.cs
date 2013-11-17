@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 namespace intrinsic.xl8.client {
 
-    internal class XLate: IXLate {
+    public class XLate: IXLate {
         public int ID { get; set; }
         public int resourceID { get; set; }
         public int LCID { get; set; }

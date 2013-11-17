@@ -8,7 +8,10 @@ using intrinsic.security;
 using System.Data.Entity.ModelConfiguration;
 
 namespace intrinsic.diagnostics {
-    internal class AccountSession {
+    
+
+
+    public class AccountSession: IAccountSession {
 
         public int id { get; set; }
         public int accountID { get; set; }
