@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using intrinsic.security.model;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using intrinsic.security;
 using System.Data.Entity.ModelConfiguration;
 
-namespace intrinsic.diagnostics {
+namespace intrinsic.diagnostics.model {
     
 
 

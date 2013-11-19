@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 
-namespace intrinsic.xl8.client {
+namespace intrinsic.xl8.model.client {
     
     
     public class Resource: IResource {

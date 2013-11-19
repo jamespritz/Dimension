@@ -104,7 +104,7 @@ create table dxdiag.session (
 
 create table dxdiag.log (
 	ID int not null identity(1,1) constraint pk_diag_log_id primary key
-	, logTypeID int not null
+	, logTypeID uniqueidentifier not null
 	, entry nvarchar(max) not null
 	, severity int not null
 	, createDT datetimeoffset not null constraint def_diag_log_createdt default getutcdate()

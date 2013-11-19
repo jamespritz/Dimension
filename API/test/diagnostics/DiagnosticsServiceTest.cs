@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using Xunit;
-using intrinsic.diagnostics;
+using intrinsic.diagnostics.model;
 using intrinsic.diagnostics.facade;
 using intrinsic.data;
 using System.Data.Common;
@@ -63,7 +63,7 @@ namespace test.diagnostics {
             Assert.Throws<System.ArgumentNullException>(() => {
 
                 ISessionFacade f = this.DumbAss;
-                f.LinkAccount(null, new Mock<intrinsic.security.IAccount>().Object);
+                f.LinkAccount(null, new Mock<intrinsic.security.model.IAccount>().Object);
 
             });
             
@@ -89,7 +89,7 @@ namespace test.diagnostics {
                     .Returns(new List<AccountSession>() { mAcctSess });
                 ((SessionFacade)f).AccountSessionRepo = mAccountSessionRepo.Object;
 
-                f.LinkAccount(new Mock<ISession>().Object, new Mock<intrinsic.security.IAccount>().Object);
+                f.LinkAccount(new Mock<ISession>().Object, new Mock<intrinsic.security.model.IAccount>().Object);
 
             });
             
@@ -181,7 +181,7 @@ namespace test.diagnostics {
             ((SessionFacade)f).Dimension = mDimension.Object;
             ((SessionFacade) f).AccountSessionRepo = mAcctSessRepo.Object;
 
-            f.LinkAccount(new Session() { id = 1 }, new intrinsic.security.Account() { ID = 1 });
+            f.LinkAccount(new Session() { id = 1 }, new intrinsic.security.model.Account() { ID = 1 });
 
             Assert.True(inserted && committed);
             

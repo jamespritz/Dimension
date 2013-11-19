@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="client\IResource.cs" />
-    <Compile Include="client\IXLate.cs" />
+    <Compile Include="model\client\IResource.cs" />
+    <Compile Include="model\client\IXLate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

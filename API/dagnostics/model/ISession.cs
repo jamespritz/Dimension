@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace intrinsic.diagnostics {
+namespace intrinsic.diagnostics.model {
     public interface ISession {
 
         int id { get; }

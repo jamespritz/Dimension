@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using intrinsic.security;
+using intrinsic.diagnostics.model;
+using intrinsic.security.model;
 
 namespace intrinsic.diagnostics.facade {
     public interface ISessionFacade {

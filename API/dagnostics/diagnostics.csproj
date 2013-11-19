@@ -39,12 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationExceptionLogEntry.cs" />
+    <Compile Include="model\ApplicationExceptionLogEntry.cs" />
     <Compile Include="facade\ISessionFacade.cs" />
-    <Compile Include="IAccountSession.cs" />
-    <Compile Include="ILog.cs" />
-    <Compile Include="ISession.cs" />
-    <Compile Include="LogEntryBase.cs" />
+    <Compile Include="model\IAccountSession.cs" />
+    <Compile Include="model\ILog.cs" />
+    <Compile Include="model\ISession.cs" />
+    <Compile Include="model\LogEntryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +53,7 @@
       <Name>security</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

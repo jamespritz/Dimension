@@ -1,6 +1,6 @@
 ﻿
 using System.Data.Entity.ModelConfiguration;
-namespace intrinsic.xl8.client {
+namespace intrinsic.xl8.model.client {
 
     public class XLate: IXLate {
         public int ID { get; set; }

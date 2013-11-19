@@ -39,11 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Credential.cs" />
+    <Compile Include="model\Credential.cs" />
     <Compile Include="encryption\EncryptedValue.cs" />
-    <Compile Include="IAccount.cs" />
+    <Compile Include="model\IAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

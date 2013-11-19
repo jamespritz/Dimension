@@ -39,8 +39,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\IAudit.cs" />
+    <Compile Include="model\IContextDefinition.cs" />
+    <Compile Include="model\IExpressionContext.cs" />
+    <Compile Include="model\IExpressionDefinitionContextDefinition.cs" />
+    <Compile Include="model\IExpressionDefinitionObjectType.cs" />
+    <Compile Include="model\integration\IIntegrationObject.cs" />
+    <Compile Include="model\integration\IObjectRelationship.cs" />
+    <Compile Include="model\IExpression.cs" />
+    <Compile Include="model\IExpressionDefinition.cs" />
+    <Compile Include="model\IObjectType.cs" />
+    <Compile Include="model\IObjectTypeRelationShip.cs" />
+    <Compile Include="model\IXType.cs" />
+    <Compile Include="model\IVariable.cs" />
+    <Compile Include="model\IVariableDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="test.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\xl8\xl8.csproj">
+      <Project>{83009c11-3368-4e39-8a02-a00d566577e8}</Project>
+      <Name>xl8</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

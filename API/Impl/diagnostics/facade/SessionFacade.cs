@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using intrinsic.security;
-using intrinsic.data;
-using Microsoft.Practices.Unity;
+﻿using intrinsic.data;
+using intrinsic.diagnostics.model;
+using intrinsic.security.model;
+using System;
 using System.Data.Entity;
+using System.Linq;
 
 namespace intrinsic.diagnostics.facade {
 

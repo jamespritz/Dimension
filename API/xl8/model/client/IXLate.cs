@@ -1,5 +1,5 @@
 ﻿
-namespace intrinsic.xl8.client {
+namespace intrinsic.xl8.model.client {
 
     /// <summary>
     /// a translation for a resource

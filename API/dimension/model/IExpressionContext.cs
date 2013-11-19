@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace intrinsic.dimension {
-    public class test {
-        public test() {
-        }
+namespace intrinsic.dimension.model {
+    interface IExpressionContext {
     }
 }

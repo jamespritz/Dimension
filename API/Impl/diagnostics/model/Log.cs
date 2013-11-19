@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity.ModelConfiguration;
 
-namespace intrinsic.diagnostics {
+namespace intrinsic.diagnostics.model {
     
     public class Log: ILog {
         public int ID { get; set; }

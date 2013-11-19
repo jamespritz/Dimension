@@ -61,21 +61,24 @@
   <ItemGroup>
     <Compile Include="data\DxContext.cs" />
     <Compile Include="data\Repository.cs" />
-    <Compile Include="diagnostics\AccountSession.cs" />
+    <Compile Include="diagnostics\model\AccountSession.cs" />
     <Compile Include="diagnostics\facade\SessionFacade.cs" />
-    <Compile Include="diagnostics\Log.cs" />
-    <Compile Include="diagnostics\Session.cs" />
+    <Compile Include="diagnostics\model\Log.cs" />
+    <Compile Include="diagnostics\model\Session.cs" />
+    <Compile Include="dimension\model\XType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="security\Account.cs" />
-    <Compile Include="security\Credential.cs" />
-    <Compile Include="xl8\client\Resource.cs" />
-    <Compile Include="xl8\client\XLate.cs" />
+    <Compile Include="security\model\Account.cs" />
+    <Compile Include="security\model\Credential.cs" />
+    <Compile Include="xl8\model\client\Resource.cs" />
+    <Compile Include="xl8\model\client\XLate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="dimension\model\integration\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dagnostics\diagnostics.csproj">
       <Project>{7236f323-388e-4011-898c-4352704869fe}</Project>

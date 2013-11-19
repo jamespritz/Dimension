@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace intrinsic.diagnostics {
+namespace intrinsic.diagnostics.model {
 
     public class TraceLogEntry: LogEntry {
 

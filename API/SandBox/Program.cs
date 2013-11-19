@@ -16,7 +16,7 @@ namespace SandBox {
         static void CreateSessionAndLog() {
 
             intrinsic.diagnostics.facade.ISessionFacade f = new intrinsic.diagnostics.facade.SessionFacade();
-            intrinsic.diagnostics.ISession newses = f.Create("origin");
+            intrinsic.diagnostics.model.ISession newses = f.Create("origin");
 
 
         }
